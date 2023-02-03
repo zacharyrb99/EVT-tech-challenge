@@ -1,9 +1,10 @@
 #!/bin/sh
-if [-e index.html]
+FILE="index.html"
+if [-f $FILE]
 then
-    rm -rf index.html
+    rm -rf $FILE
 else
-    curl https://bitbucket.org/bjgiller/evt-tech-challenge/raw/master/evt-web.html >> index.html
+    curl https://bitbucket.org/bjgiller/evt-tech-challenge/raw/master/evt-web.html >> $FILE
 fi
 
 python3 server.py
