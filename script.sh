@@ -8,5 +8,5 @@ FILE=index.html
 # fi
 [ -f $FILE ] && rm -rf $FILE #shorthand
 
-curl https://bitbucket.org/bjgiller/evt-tech-challenge/raw/master/evt-web.html >> $FILE #gets html from provided URL
-python3 server.py #runs server.py and starts server
+curl https://bitbucket.org/bjgiller/evt-tech-challenge/raw/master/evt-web.html >> $FILE # gets html from provided URL
+python3 server.py # runs server.py and starts web server

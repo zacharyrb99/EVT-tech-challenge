@@ -1,41 +1,31 @@
 import http.server
-import socketserver
 import ssl
+import os
 
 HOST = "localhost"
-PORT = 80
+PORT = 8080
 server_address = (HOST, PORT)
 
-# class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
-#     def do_GET(self):
-#         self.path = "index.html"
-#         return http.server.SimpleHTTPRequestHandler.do_GET(self)
-    
-# Handler = MyHttpRequestHandler
-
-# with socketserver.TCPServer(("", PORT) , Handler) as httpd:
-#     print("Web Server running at port: " + str(PORT))
-#     httpd.serve_forever()
-
-class MyServer(http.server.SimpleHTTPRequestHandler):
-    # Handles GET request
-    def do_GET(self):
-        self.send_response(200) # Responds with 200 OK status code
-        self.send_header("Content-type", "text/html") # Specifies HTTP header, sets media type of resource to html
-        self.end_headers()
-        self.path = "index.html" # Sets path to HTML file that will be served
-        return http.server.SimpleHTTPRequestHandler.do_GET(self)
-
 if __name__ == "__main__":
-    web_server = http.server.HTTPServer(("", PORT), MyServer)
+    httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
     print("Web Server started on port: %s" % str(PORT))
-    print("Access it at http://%s:%s" % (HOST, PORT))
+    print("Access it at https://%s:%s" % (HOST, PORT))
     
     try:
-        web_server.socket = ssl.wrap_socket(web_server.socket, certfile="server.pem", keyfile="server.key", server_side=True)
-        web_server.serve_forever()
+        httpd.socket = ssl.wrap_socket(httpd.socket, 
+                                            certfile="certificates/server.pem", 
+                                            keyfile="certificates/key.pem", 
+                                            server_side=True,
+                                            ssl_version=ssl.PROTOCOL_TLS)
+        httpd.serve_forever()
     except KeyboardInterrupt:
-        web_server.server_close()
+        httpd.server_close()
         print("Web server has been stopped.")
-    except:
+    except Exception as e:
         print("Something went wrong.")
+        print(e)
+        
+    try:
+        os.remove("index.html")
+    except:
+        print("index.html doesn't exist")
