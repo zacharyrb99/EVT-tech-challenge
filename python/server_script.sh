@@ -3,7 +3,6 @@ FILE=index.html
 
 # if test -f $FILE
 # then
-#     echo "EXISTS"
 #     rm -rf $FILE
 # fi
 [ -f $FILE ] && rm -rf $FILE #shorthand

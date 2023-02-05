@@ -13,8 +13,8 @@ if __name__ == "__main__":
     
     try:
         httpd.socket = ssl.wrap_socket(httpd.socket, 
-                                            certfile="certificates/server.pem", 
-                                            keyfile="certificates/key.pem", 
+                                            certfile="certs/cert.pem", 
+                                            keyfile="certs/key.pem", 
                                             server_side=True,
                                             ssl_version=ssl.PROTOCOL_TLS)
         httpd.serve_forever()
