@@ -1,5 +1,5 @@
 # EVT Tech Challenge
-*I decided to not automate the creation of the SSL certificate because I used a self signed certificate. In a production environment, these would be issue by a certificate authority, so there would be no need to manually create them as I have shown below.*
+*I decided to _not_ automate the creation of the SSL certificate because I used a self signed certificate. In a production environment, these would be issue by a certificate authority, so there would be no need to manually create them as I have shown below.*
 
 ## Python
 ### Requirements
