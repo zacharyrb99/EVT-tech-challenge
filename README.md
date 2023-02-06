@@ -20,6 +20,7 @@ This is the more straight-forward solution. I chose to build a simple web server
 This is the more portable version solution. I chose Docker because of it portability, all you need is the Docker engine downloaded to run the Docker images. Rather than a Python HTTP server, I chose to use a nginx server. This required more configuration compared to the Python web server, but is more similar to a production model. The python web server isn't meant for a production because of its security concerns, but it is very quick to build. The nginx server is more secure out the box, but requires more configuration. As stated above, the creation of the SSL certificate isn't automated. After you create the certificate the first time, everything else is automated. Once you run `docker_script.sh`, you should be able to visit https://localhost:8080 and see the webpage.
 ### Requirements
 - Linux (Ubuntu)
+- OpenSSL
 - Docker
 
 ### Set up SSL certificate (first time)
