@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 FILE=index.html
 
 # if test -f $FILE
